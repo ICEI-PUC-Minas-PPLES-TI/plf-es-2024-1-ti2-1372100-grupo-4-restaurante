@@ -21,8 +21,13 @@ public class ProdutosController {
 
     @GetMapping
     public ResponseEntity<List<Produtos>> getAllProdutos() {
-        List<Produtos> produtos = produtosRepository.findAll();
-        return new ResponseEntity<>(produtos, HttpStatus.OK);
+        try {
+            List<Produtos> produtos = produtosRepository.findAll();
+            return new ResponseEntity<>(produtos, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping
