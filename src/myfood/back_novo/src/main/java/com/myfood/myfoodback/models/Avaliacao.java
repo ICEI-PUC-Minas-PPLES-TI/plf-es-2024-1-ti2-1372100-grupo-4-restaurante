@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Avaliacao {
@@ -12,37 +14,34 @@ public class Avaliacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long produtoId;
+    @ManyToOne
+    @JoinColumn(name = "produto_id")
+    private Produtos produto;
+
     private Integer estrelas;
     private String comentario;
 
     public Avaliacao() {
     }
 
-    public Avaliacao(Long produtoId, Integer estrelas, String comentario) {
-        this.produtoId = produtoId;
-        this.estrelas = estrelas;
-        this.comentario = comentario;
-    }
-
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public Long getProdutoId() {
-        return produtoId;
+    public Produtos getProduto() {
+        return this.produto;
     }
 
-    public void setProdutoId(Long produtoId) {
-        this.produtoId = produtoId;
+    public void setProduto(Produtos produto) {
+        this.produto = produto;
     }
 
     public Integer getEstrelas() {
-        return estrelas;
+        return this.estrelas;
     }
 
     public void setEstrelas(Integer estrelas) {
@@ -50,10 +49,11 @@ public class Avaliacao {
     }
 
     public String getComentario() {
-        return comentario;
+        return this.comentario;
     }
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
+   
 }

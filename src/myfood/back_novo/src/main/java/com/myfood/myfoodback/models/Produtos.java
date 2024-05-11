@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.CascadeType;
+import java.util.List;
 
 @Entity
 public class Produtos {
@@ -18,19 +21,14 @@ public class Produtos {
     private String imagem;
     private boolean visibilidadeAvaliacao;
 
+    @OneToMany(mappedBy = "produtos", cascade = CascadeType.ALL)
+    private List<Avaliacao> avaliacoes;
+
     public Produtos() {
     }
 
-    public Produtos(String nome, String descricao, double preco, String imagem, boolean visibilidadeAvaliacao) {
-        this.nome = nome;
-        this.descricao = descricao;
-        this.preco = preco;
-        this.imagem = imagem;
-        this.visibilidadeAvaliacao = visibilidadeAvaliacao;
-    }
-
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -38,7 +36,7 @@ public class Produtos {
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public void setNome(String nome) {
@@ -46,7 +44,7 @@ public class Produtos {
     }
 
     public String getDescricao() {
-        return descricao;
+        return this.descricao;
     }
 
     public void setDescricao(String descricao) {
@@ -54,7 +52,7 @@ public class Produtos {
     }
 
     public double getPreco() {
-        return preco;
+        return this.preco;
     }
 
     public void setPreco(double preco) {
@@ -62,7 +60,7 @@ public class Produtos {
     }
 
     public String getImagem() {
-        return imagem;
+        return this.imagem;
     }
 
     public void setImagem(String imagem) {
@@ -70,10 +68,23 @@ public class Produtos {
     }
 
     public boolean isVisibilidadeAvaliacao() {
-        return visibilidadeAvaliacao;
+        return this.visibilidadeAvaliacao;
+    }
+
+    public boolean getVisibilidadeAvaliacao() {
+        return this.visibilidadeAvaliacao;
     }
 
     public void setVisibilidadeAvaliacao(boolean visibilidadeAvaliacao) {
         this.visibilidadeAvaliacao = visibilidadeAvaliacao;
     }
+
+    public List<Avaliacao> getAvaliacoes() {
+        return this.avaliacoes;
+    }
+
+    public void setAvaliacoes(List<Avaliacao> avaliacoes) {
+        this.avaliacoes = avaliacoes;
+    }
+
 }
