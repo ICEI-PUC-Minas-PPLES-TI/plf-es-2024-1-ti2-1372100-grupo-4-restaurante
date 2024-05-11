@@ -21,7 +21,7 @@ public class Produtos {
     private String imagem;
     private boolean visibilidadeAvaliacao;
 
-    @OneToMany(mappedBy = "produtos", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
     private List<Avaliacao> avaliacoes;
 
     public Produtos() {
