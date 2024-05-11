@@ -10,7 +10,6 @@ import java.util.List;
 
 @CrossOrigin(origins = "https://plf-es-2024-1-ti2-1372100-grupo-4-restaurante-deploy-my-food.vercel.app/")
 @RestController
-@RequestMapping("/produtos")
 public class ProdutosController {
 
     private final ProdutosRepository produtosRepository;
@@ -19,19 +18,19 @@ public class ProdutosController {
         this.produtosRepository = produtosRepository;
     }
 
-    @GetMapping
+    @GetMapping("/produtos")
     public ResponseEntity<List<Produtos>> getAllProdutos() {
         List<Produtos> produtos = produtosRepository.findAll();
         return new ResponseEntity<>(produtos, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/produtos")
     public ResponseEntity<Produtos> addProduto(@RequestBody Produtos produto) {
         Produtos savedProduto = produtosRepository.save(produto);
         return new ResponseEntity<>(savedProduto, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/produtos/{id}")
     public ResponseEntity<Produtos> getProdutoById(@PathVariable Long id) {
         Produtos produto = produtosRepository.findById(id).orElse(null);
         if (produto != null) {
@@ -41,7 +40,7 @@ public class ProdutosController {
         }
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("/produtos/edit/{id}")
     public ResponseEntity<Produtos> updateProduto(@PathVariable Long id, @RequestBody Produtos updatedProduto) {
         Produtos existingProduto = produtosRepository.findById(id).orElse(null);
         if (existingProduto != null) {
@@ -53,7 +52,7 @@ public class ProdutosController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/produtos/delete/{id}")
     public ResponseEntity<Void> deleteProduto(@PathVariable Long id) {
         Produtos produto = produtosRepository.findById(id).orElse(null);
         if (produto != null) {
