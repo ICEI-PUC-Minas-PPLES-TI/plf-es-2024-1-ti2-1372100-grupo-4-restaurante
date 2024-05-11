@@ -22,7 +22,7 @@ public class Produtos {
     private boolean visibilidadeAvaliacao;
 
     @OneToMany(mappedBy = "produtos", cascade = CascadeType.ALL)
-    private List<Avaliacao> avaliacoes;
+    private List<Avaliacao> avaliacoesId;
 
     public Produtos() {
     }
@@ -79,12 +79,12 @@ public class Produtos {
         this.visibilidadeAvaliacao = visibilidadeAvaliacao;
     }
 
-    public List<Avaliacao> getAvaliacoes() {
-        return this.avaliacoes;
+    public List<Avaliacao> getAvaliacoesId() {
+        return this.avaliacoesId;
     }
 
-    public void setAvaliacoes(List<Avaliacao> avaliacoes) {
-        this.avaliacoes = avaliacoes;
+    public void setAvaliacoesId(List<Avaliacao> avaliacoes) {
+        this.avaliacoesId = avaliacoes;
     }
 
 }

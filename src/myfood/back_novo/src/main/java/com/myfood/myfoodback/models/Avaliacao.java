@@ -16,7 +16,7 @@ public class Avaliacao {
 
     @ManyToOne
     @JoinColumn(name = "produto_id")
-    private Produtos produto;
+    private Produtos produtoId;
 
     private Integer estrelas;
     private String comentario;
@@ -32,12 +32,12 @@ public class Avaliacao {
         this.id = id;
     }
 
-    public Produtos getProduto() {
-        return this.produto;
+    public Produtos getProdutoId() {
+        return this.produtoId;
     }
 
-    public void setProduto(Produtos produto) {
-        this.produto = produto;
+    public void setProdutoId(Produtos produto) {
+        this.produtoId = produto;
     }
 
     public Integer getEstrelas() {
@@ -55,5 +55,5 @@ public class Avaliacao {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
-   
+
 }
