@@ -8,7 +8,7 @@
 
   let endpoint = "http://localhost:8080";
   let cardapioMesa =
-    "https://plf-es-2024-1-ti2-1372100-grupo-4-restaurante-deploy-my-food.vercel.app/mesas";
+    "https://plf-es-2024-1-ti2-1372100-grupo-4-restaurante-deploy-518euk7ox.vercel.app//mesas";
   let mesas: Mesa[] = [];
   let qrLinks: string[] = [];
   let API_URL = "https://api.qrserver.com/v1/create-qr-code/?data=";
