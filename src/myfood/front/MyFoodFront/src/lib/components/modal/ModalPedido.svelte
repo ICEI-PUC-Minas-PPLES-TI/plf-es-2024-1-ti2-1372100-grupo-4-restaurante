@@ -144,14 +144,14 @@
         <div class=" h-10 w-10 items-center justify-center gap-4">
           <img class="" src={imagem} alt="imagem {nome}" />
         </div>
-        <div class="flex items-center justify-center">
-          <h1 class="mr-3 items-center text-xl">Quantidade:</h1>
-          <div class="flex items-center gap-3 text-center">
-            <Button variant="buttonAdd" on:click={decrease}><Minus /></Button>
-            <p class="text-xl font-bold">{quantidade}</p>
-            <Button variant="buttonAdd" on:click={increase}><Plus /></Button>
-          </div>
-        </div>
+          <!-- <div class="flex items-center justify-center">
+            <h1 class="mr-3 items-center text-xl">Quantidade:</h1>
+            <div class="flex items-center gap-3 text-center">
+              <Button variant="buttonAdd" on:click={decrease}><Minus /></Button>
+              <p class="text-xl font-bold">{quantidade}</p>
+              <Button variant="buttonAdd" on:click={increase}><Plus /></Button>
+            </div>
+          </div> -->
         <p class="mt-3 text-right text-xl">
           Valor total: <span class="font-bold text-primary">R${precoTotal}</span
           >

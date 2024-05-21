@@ -25,8 +25,9 @@
     status: string;
     valorPago: number;
     produtoId: number;
-    quantidade: number;
   };
+
+  let promise = fetch(`${ENDPOINT_URL}/produtos`);
 
   let pratos: Prato[] = [];
 
@@ -39,21 +40,13 @@
     pratos = await response.json();
   });
   async function finalizePedido() {
-    console.log('clienteId', $session.clienteId)
-    console.log('mesaId', $session.mesaId)
-
-
   for (let item of $cart) {
-    console.log('preco', item.precoTotal)
-    console.log('itemId', item.id)
-    console.log('quantidade', item.quantidade)
-    const Pedido = {
-      clienteIdPedido: $session.clienteId,
-      mesaIdPedido: $session.mesaId,
+    const pedidoData = {
+      clienteIdPedido: { id: $session.clienteId },
+      mesaIdPedido: { id: $session.mesaId },
       status: 'PENDENTE',
       valorPago: item.precoTotal,
-      produtoId: item.id,
-      quantidade: item.quantidade
+      produtoId: { id: item.id },
     };
 
     const response = await fetch(`${ENDPOINT_URL}/pedidos`, {
@@ -61,25 +54,34 @@
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(Pedido)
+      body: JSON.stringify(pedidoData)
     });
 
     if (!response.ok) {
-      console.error('Failed to finalize order:', response.status);
+      console.error('Failed to finalize order:', response.status, response.statusText);
+      const responseData = await response.json();
+      console.error('Server response:', responseData);
+      return;
     }
   }
 
   cart.set([]);
 }
+
 </script>
 
-<div class="p-10 sm:ml-64">
+<div class="">
   <div class="py-4">
     <div class=" items-center gap-0 pb-5">
       <h1 class="text-center text-4xl font-bold text-secondary">
         Cardapio restaurante
       </h1>
     </div>
+    {#await promise}
+    <div class="flex items-center justify-center mt-20">
+      <Diamonds size="60" color="#FF3E00" unit="px" duration="1s" />
+    </div>
+  {:then}
     <Cardapio>
       {#each pratos as item}
         <ModalPedido
@@ -102,5 +104,6 @@
       <p class="pr-2">Finalizar Pedido</p>
       <Check />
     </Button>
+    {/await}
   </div>
 </div>
