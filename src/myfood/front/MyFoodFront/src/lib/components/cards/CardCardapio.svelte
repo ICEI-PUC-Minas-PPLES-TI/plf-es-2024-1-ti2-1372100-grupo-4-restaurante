@@ -13,8 +13,8 @@
 </script>
 
 <Card.Root class="w-auto border shadow-lg">
-  <div class="row flex">
-    <div class="column w-7/12 max-w-xl h-60">
+  <div class="row flex flex-col-reverse sm:flex-row">
+    <div class="column sm:w-7/12 w-full max-w-xl h-fit min-h-60">
       <Card.Header>
         <Card.Title
           class="mb-2 text-2xl font-bold tracking-tight text-gray-900 "
@@ -51,11 +51,11 @@
         </div>
       </Card.Content>
     </div>
-    <div class="column w-5/12 max-h-60">
+    <div class="column sm:w-5/12 w-full min-h-60">
       <img
         src={imagem}
         alt=""
-        class="ml-auto h-full w-60 rounded-r-lg object-cover"
+        class="ml-auto h-full sm:w-60 rounded-r-lg rounded-l-lg sm:rounded-l-none object-cover"
       />
     </div>
   </div>
