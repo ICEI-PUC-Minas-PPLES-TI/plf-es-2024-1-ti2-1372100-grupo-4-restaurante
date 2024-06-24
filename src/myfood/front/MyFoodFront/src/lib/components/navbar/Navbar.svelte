@@ -1,6 +1,6 @@
 <script lang="ts">
   import ButtonNav from "$lib/components/navbar/ButtonNav.svelte";
-  import { SquareMenu, Receipt, Utensils ,Star  } from "lucide-svelte";
+  import { SquareMenu, Receipt, Utensils, Star, X } from "lucide-svelte";
   import type { ComponentType } from "svelte";
   import type { Icon } from "lucide-svelte";
 
@@ -11,14 +11,20 @@
   }[] = [
     { label: "Cardapio", href: "/cardapio", icon: SquareMenu },
     { label: "Pedidos", href: "/pedidos", icon: Receipt },
-    { label: "Mesas", href: "/mesas", icon: Utensils  },
-    { label: "Avaliacoes", href: "/avaliacoes", icon: Star  },
+    { label: "Mesas", href: "/mesas", icon: Utensils },
+    { label: "Avaliacoes", href: "/avaliacoes", icon: Star },
   ];
+
   let navmobile: HTMLElement;
 
   function openNav() {
     navmobile.classList.remove("-translate-x-full");
     navmobile.classList.add("translate-x-0");
+  }
+
+  function closeNav() {
+    navmobile.classList.remove("translate-x-0");
+    navmobile.classList.add("-translate-x-full");
   }
 </script>
 
@@ -28,7 +34,7 @@
   data-drawer-toggle="logo-sidebar"
   aria-controls="logo-sidebar"
   type="button"
-  class="ms-3 mt-2 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200  sm:hidden"
+  class="ms-3 mt-2 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 sm:hidden"
 >
   <span class="sr-only">Open sidebar</span>
   <svg
@@ -52,14 +58,23 @@
   class="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full transition-transform sm:translate-x-0"
   aria-label="Sidebar"
 >
-  <div class="h-full overflow-y-auto border bg-gray-100 px-3 py-4">
-    <a href="/" class="mb-5 flex items-center">
-      <img
-        class="self-center whitespace-nowrap text-xl font-semibold "
-        src="/logoTIAW.png"
-        alt=""
-      />
-    </a>
+  <div class="relative h-full overflow-y-auto border bg-gray-100 px-3 py-4">
+    <div class="flex justify-between items-center mb-5">
+      <a href="/" class="flex items-center">
+        <img
+          class="self-center whitespace-nowrap text-xl font-semibold"
+          src="/logoTIAW.png"
+          alt="Logo"
+        />
+      </a>
+      <button
+        on:click={closeNav}
+        class="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-200 sm:hidden"
+      >
+        <X class="h-6 w-6" />
+        <span class="sr-only">Close sidebar</span>
+      </button>
+    </div>
     <ul class="space-y-2 font-medium">
       {#each itens as item}
         <ButtonNav href={item.href} label={item.label} Icon={item.icon} />
